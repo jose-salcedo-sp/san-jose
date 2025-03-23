@@ -1,0 +1,9 @@
+[03-Oct-2024 00:15:13 America/Mexico_City] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/config/conexion.php on line 9
+[03-Oct-2024 00:15:13 America/Mexico_City] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/config/conexion.php on line 11
+[12-Mar-2025 16:22:22 America/Mexico_City] PHP Fatal error:  Uncaught PHPExcel_Reader_Exception: Could not open tmp/FORMATO ORDEN DE COMPRA  JUVIEJUS.xlsx for reading! File does not exist. in /home4/vialcor1/abasanjose.vialcorp.com.mx/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php:82
+Stack trace:
+#0 /home4/vialcor1/abasanjose.vialcorp.com.mx/PHPExcel/Classes/PHPExcel/IOFactory.php(268): PHPExcel_Reader_Excel2007->canRead('tmp/FORMATO ORD...')
+#1 /home4/vialcor1/abasanjose.vialcorp.com.mx/PHPExcel/Classes/PHPExcel/IOFactory.php(205): PHPExcel_IOFactory::createReaderForFile('tmp/FORMATO ORD...')
+#2 /home4/vialcor1/abasanjose.vialcorp.com.mx/importar_archivoxls.php(22): PHPExcel_IOFactory::identify('tmp/FORMATO ORD...')
+#3 {main}
+  thrown in /home4/vialcor1/abasanjose.vialcorp.com.mx/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php on line 82

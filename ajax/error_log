@@ -1,0 +1,13 @@
+[28-Jun-2023 16:19:42 America/Mexico_City] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/config/conexion.php on line 9
+[28-Jun-2023 16:19:42 America/Mexico_City] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/config/conexion.php on line 11
+[28-Jun-2023 16:19:43 America/Mexico_City] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/config/conexion.php on line 9
+[28-Jun-2023 16:19:43 America/Mexico_City] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/config/conexion.php on line 11
+[20-Dec-2023 20:18:35 America/Mexico_City] PHP Warning:  Undefined variable $impuesto in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/agregar_facturacion.php on line 83
+[20-Dec-2023 20:18:35 America/Mexico_City] PHP Warning:  Undefined variable $total_iva in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/agregar_facturacion.php on line 84
+[20-Dec-2023 20:18:45 America/Mexico_City] PHP Warning:  Undefined variable $impuesto in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/agregar_facturacion.php on line 83
+[20-Dec-2023 20:18:45 America/Mexico_City] PHP Warning:  Undefined variable $total_iva in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/agregar_facturacion.php on line 84
+[09-Jan-2024 17:04:37 America/Mexico_City] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/editar_facturacion.php on line 51
+[09-Jan-2024 17:04:44 America/Mexico_City] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/editar_facturacion.php on line 51
+[09-Jan-2024 17:05:27 America/Mexico_City] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/editar_facturacion.php on line 51
+[11-Jan-2024 16:26:56 America/Mexico_City] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/editar_facturacion.php on line 48
+[11-Jan-2024 16:30:21 America/Mexico_City] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home4/vialcor1/abasanjose.vialcorp.com.mx/ajax/editar_facturacion.php on line 48
