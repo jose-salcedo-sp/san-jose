@@ -59,7 +59,7 @@ const app = new Elysia()
                 .from(facturas)
                 .innerJoin(clientes, eq(facturas.idCliente, clientes.idCliente))
                 .where(searchWhere)
-                .orderBy(desc(facturas.idFactura))
+                .orderBy(desc(facturas.numeroFactura))
                 .limit(perPage)
                 .offset(offset)
                 .execute();
@@ -82,5 +82,6 @@ const app = new Elysia()
     )
     .listen(3001);
 
+export type BackendApi = typeof app;
 console.log("Backend running at http://localhost:3001");
 
