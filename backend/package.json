@@ -1,0 +1,15 @@
+{
+	"name": "backend",
+	"private": true,
+	"scripts": {
+		"dev": "bun --watch index.ts"
+	},
+	"dependencies": {
+		"@libsql/client": "^0.15.15",
+		"drizzle-orm": "^0.44.5",
+		"elysia": "^1.4.6"
+	},
+	"devDependencies": {
+		"drizzle-kit": "^0.31.4"
+	}
+}

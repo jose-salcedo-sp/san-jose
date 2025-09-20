@@ -1,0 +1,1503 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "6",
+  "dialect": "sqlite",
+  "tables": {
+    "products": {
+      "name": "products",
+      "columns": {
+        "id_producto": {
+          "autoincrement": false,
+          "name": "id_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codigo_producto": {
+          "autoincrement": false,
+          "name": "codigo_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre_producto": {
+          "autoincrement": false,
+          "name": "nombre_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status_producto": {
+          "autoincrement": false,
+          "name": "status_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unidad_producto": {
+          "autoincrement": false,
+          "name": "unidad_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_added": {
+          "autoincrement": false,
+          "name": "date_added",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio_proveedor": {
+          "autoincrement": false,
+          "name": "precio_proveedor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio_producto": {
+          "autoincrement": false,
+          "name": "precio_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "etiqueta": {
+          "autoincrement": false,
+          "name": "etiqueta",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clave_sat": {
+          "autoincrement": false,
+          "name": "clave_sat",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "metodo_pago": {
+      "name": "metodo_pago",
+      "columns": {
+        "id_metodo": {
+          "autoincrement": false,
+          "name": "id_metodo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre_metodo": {
+          "autoincrement": false,
+          "name": "nombre_metodo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clave_metodo": {
+          "autoincrement": false,
+          "name": "clave_metodo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "tipo_comprobantes": {
+      "name": "tipo_comprobantes",
+      "columns": {
+        "id_tipo": {
+          "autoincrement": false,
+          "name": "id_tipo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion_comprobante": {
+          "autoincrement": false,
+          "name": "descripcion_comprobante",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "detalle_factura": {
+      "name": "detalle_factura",
+      "columns": {
+        "id_detalle": {
+          "autoincrement": false,
+          "name": "id_detalle",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numero_factura": {
+          "autoincrement": false,
+          "name": "numero_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_producto": {
+          "autoincrement": false,
+          "name": "id_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cantidad": {
+          "autoincrement": false,
+          "name": "cantidad",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio_venta": {
+          "autoincrement": false,
+          "name": "precio_venta",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "obj_imp": {
+          "autoincrement": false,
+          "name": "obj_imp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "iva_trasladado": {
+          "autoincrement": false,
+          "name": "iva_trasladado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "facturas": {
+      "name": "facturas",
+      "columns": {
+        "id_factura": {
+          "autoincrement": false,
+          "name": "id_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numero_factura": {
+          "autoincrement": false,
+          "name": "numero_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_factura": {
+          "autoincrement": false,
+          "name": "fecha_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_cliente": {
+          "autoincrement": false,
+          "name": "id_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_vendedor": {
+          "autoincrement": false,
+          "name": "id_vendedor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "condiciones": {
+          "autoincrement": false,
+          "name": "condiciones",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "semana": {
+          "autoincrement": false,
+          "name": "semana",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_venta": {
+          "autoincrement": false,
+          "name": "total_venta",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "estado_factura": {
+          "autoincrement": false,
+          "name": "estado_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metodo_pago": {
+          "autoincrement": false,
+          "name": "metodo_pago",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uso_cfdi": {
+          "autoincrement": false,
+          "name": "uso_cfdi",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "xml": {
+          "autoincrement": false,
+          "name": "xml",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "user_id": {
+          "autoincrement": false,
+          "name": "user_id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "firstname": {
+          "autoincrement": false,
+          "name": "firstname",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastname": {
+          "autoincrement": false,
+          "name": "lastname",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_empresa": {
+          "autoincrement": false,
+          "name": "user_empresa",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_name": {
+          "autoincrement": false,
+          "name": "user_name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_password_hash": {
+          "autoincrement": false,
+          "name": "user_password_hash",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_email": {
+          "autoincrement": false,
+          "name": "user_email",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_added": {
+          "autoincrement": false,
+          "name": "date_added",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_tipo": {
+          "autoincrement": false,
+          "name": "user_tipo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "forma_de_pago": {
+      "name": "forma_de_pago",
+      "columns": {
+        "id_forma": {
+          "autoincrement": false,
+          "name": "id_forma",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre_forma": {
+          "autoincrement": false,
+          "name": "nombre_forma",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clave": {
+          "autoincrement": false,
+          "name": "clave",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "activo": {
+          "autoincrement": false,
+          "name": "activo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "proveedores": {
+      "name": "proveedores",
+      "columns": {
+        "id_cliente": {
+          "autoincrement": false,
+          "name": "id_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre_cliente": {
+          "autoincrement": false,
+          "name": "nombre_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "telefono_cliente": {
+          "autoincrement": false,
+          "name": "telefono_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email_cliente": {
+          "autoincrement": false,
+          "name": "email_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "direccion_cliente": {
+          "autoincrement": false,
+          "name": "direccion_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "productos_cliente": {
+          "autoincrement": false,
+          "name": "productos_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status_cliente": {
+          "autoincrement": false,
+          "name": "status_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_added": {
+          "autoincrement": false,
+          "name": "date_added",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "unidades_medida": {
+      "name": "unidades_medida",
+      "columns": {
+        "id_unidad": {
+          "autoincrement": false,
+          "name": "id_unidad",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "autoincrement": false,
+          "name": "descripcion",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codigo_sat": {
+          "autoincrement": false,
+          "name": "codigo_sat",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "uso_cfdi": {
+      "name": "uso_cfdi",
+      "columns": {
+        "id_cfd": {
+          "autoincrement": false,
+          "name": "id_cfd",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clave": {
+          "autoincrement": false,
+          "name": "clave",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre_uso": {
+          "autoincrement": false,
+          "name": "nombre_uso",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fisico": {
+          "autoincrement": false,
+          "name": "fisico",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "moral": {
+          "autoincrement": false,
+          "name": "moral",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "clientes": {
+      "name": "clientes",
+      "columns": {
+        "id_cliente": {
+          "autoincrement": false,
+          "name": "id_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre_cliente": {
+          "autoincrement": false,
+          "name": "nombre_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "telefono_cliente": {
+          "autoincrement": false,
+          "name": "telefono_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email_cliente": {
+          "autoincrement": false,
+          "name": "email_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "direccion_cliente": {
+          "autoincrement": false,
+          "name": "direccion_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status_cliente": {
+          "autoincrement": false,
+          "name": "status_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_added": {
+          "autoincrement": false,
+          "name": "date_added",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "contacto_cliente": {
+          "autoincrement": false,
+          "name": "contacto_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "razon_social": {
+          "autoincrement": false,
+          "name": "razon_social",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rfc_cliente": {
+          "autoincrement": false,
+          "name": "rfc_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cp_cliente": {
+          "autoincrement": false,
+          "name": "cp_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo_cliente": {
+          "autoincrement": false,
+          "name": "tipo_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "regimen_cliente": {
+          "autoincrement": false,
+          "name": "regimen_cliente",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "tmp": {
+      "name": "tmp",
+      "columns": {
+        "id_tmp": {
+          "autoincrement": false,
+          "name": "id_tmp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_producto": {
+          "autoincrement": false,
+          "name": "id_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cantidad_tmp": {
+          "autoincrement": false,
+          "name": "cantidad_tmp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unidad_tmp": {
+          "autoincrement": false,
+          "name": "unidad_tmp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio_tmp": {
+          "autoincrement": false,
+          "name": "precio_tmp",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "session_id": {
+          "autoincrement": false,
+          "name": "session_id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "moneda_sat": {
+      "name": "moneda_sat",
+      "columns": {
+        "id_moneda": {
+          "autoincrement": false,
+          "name": "id_moneda",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion_moneda": {
+          "autoincrement": false,
+          "name": "descripcion_moneda",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "activo": {
+          "autoincrement": false,
+          "name": "activo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pais": {
+          "autoincrement": false,
+          "name": "pais",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "currencies": {
+      "name": "currencies",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "symbol": {
+          "autoincrement": false,
+          "name": "symbol",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precision": {
+          "autoincrement": false,
+          "name": "precision",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "thousand_separator": {
+          "autoincrement": false,
+          "name": "thousand_separator",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "decimal_separator": {
+          "autoincrement": false,
+          "name": "decimal_separator",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "code": {
+          "autoincrement": false,
+          "name": "code",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "detalle_facturas_emitidas": {
+      "name": "detalle_facturas_emitidas",
+      "columns": {
+        "id_detalle": {
+          "autoincrement": false,
+          "name": "id_detalle",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_factura": {
+          "autoincrement": false,
+          "name": "id_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codigo_producto": {
+          "autoincrement": false,
+          "name": "codigo_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cantidad_producto": {
+          "autoincrement": false,
+          "name": "cantidad_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unidad_producto": {
+          "autoincrement": false,
+          "name": "unidad_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion_producto": {
+          "autoincrement": false,
+          "name": "descripcion_producto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "precio_venta": {
+          "autoincrement": false,
+          "name": "precio_venta",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "importe": {
+          "autoincrement": false,
+          "name": "importe",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descuento": {
+          "autoincrement": false,
+          "name": "descuento",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descuento_aplicado": {
+          "autoincrement": false,
+          "name": "descuento_aplicado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "objetoimpuesto": {
+          "autoincrement": false,
+          "name": "objetoimpuesto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impuesto_opcion": {
+          "autoincrement": false,
+          "name": "impuesto_opcion",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "valor_trasladado": {
+          "autoincrement": false,
+          "name": "valor_trasladado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ret_iva": {
+          "autoincrement": false,
+          "name": "ret_iva",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ret_isr": {
+          "autoincrement": false,
+          "name": "ret_isr",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "val_ret_iva": {
+          "autoincrement": false,
+          "name": "val_ret_iva",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "val_ret_isr": {
+          "autoincrement": false,
+          "name": "val_ret_isr",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "regimenes": {
+      "name": "regimenes",
+      "columns": {
+        "id_reg": {
+          "autoincrement": false,
+          "name": "id_reg",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "clave": {
+          "autoincrement": false,
+          "name": "clave",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "regimen_sat": {
+          "autoincrement": false,
+          "name": "regimen_sat",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo": {
+          "autoincrement": false,
+          "name": "tipo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "contactos": {
+      "name": "contactos",
+      "columns": {
+        "user_id": {
+          "autoincrement": false,
+          "name": "user_id",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "firstname": {
+          "autoincrement": false,
+          "name": "firstname",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastname": {
+          "autoincrement": false,
+          "name": "lastname",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "empresa": {
+          "autoincrement": false,
+          "name": "empresa",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_empresa": {
+          "autoincrement": false,
+          "name": "id_empresa",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_added": {
+          "autoincrement": false,
+          "name": "date_added",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "telefono": {
+          "autoincrement": false,
+          "name": "telefono",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "perfil": {
+      "name": "perfil",
+      "columns": {
+        "id_perfil": {
+          "autoincrement": false,
+          "name": "id_perfil",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nombre_empresa": {
+          "autoincrement": false,
+          "name": "nombre_empresa",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "direccion": {
+          "autoincrement": false,
+          "name": "direccion",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ciudad": {
+          "autoincrement": false,
+          "name": "ciudad",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codigo_postal": {
+          "autoincrement": false,
+          "name": "codigo_postal",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "estado": {
+          "autoincrement": false,
+          "name": "estado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "telefono": {
+          "autoincrement": false,
+          "name": "telefono",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impuesto": {
+          "autoincrement": false,
+          "name": "impuesto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "moneda": {
+          "autoincrement": false,
+          "name": "moneda",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "logo_url": {
+          "autoincrement": false,
+          "name": "logo_url",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "emisor_factura": {
+          "autoincrement": false,
+          "name": "emisor_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rfc_emisor": {
+          "autoincrement": false,
+          "name": "rfc_emisor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cp_emisor": {
+          "autoincrement": false,
+          "name": "cp_emisor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "regimen_emisor": {
+          "autoincrement": false,
+          "name": "regimen_emisor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "configuraciones": {
+      "name": "configuraciones",
+      "columns": {
+        "id_config": {
+          "autoincrement": false,
+          "name": "id_config",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pac": {
+          "autoincrement": false,
+          "name": "pac",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version": {
+          "autoincrement": false,
+          "name": "version",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ruta_timbrado": {
+          "autoincrement": false,
+          "name": "ruta_timbrado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "proveedor": {
+          "autoincrement": false,
+          "name": "proveedor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usuario": {
+          "autoincrement": false,
+          "name": "usuario",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palabra_paso": {
+          "autoincrement": false,
+          "name": "palabra_paso",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ruta_keys": {
+          "autoincrement": false,
+          "name": "ruta_keys",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "predeterminado": {
+          "autoincrement": false,
+          "name": "predeterminado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ruta_pac": {
+          "autoincrement": false,
+          "name": "ruta_pac",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "utilidades_pac": {
+          "autoincrement": false,
+          "name": "utilidades_pac",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "registro_cliente_pac": {
+          "autoincrement": false,
+          "name": "registro_cliente_pac",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cancelacion_pac": {
+          "autoincrement": false,
+          "name": "cancelacion_pac",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "facturas_emitidas": {
+      "name": "facturas_emitidas",
+      "columns": {
+        "id_factura": {
+          "autoincrement": false,
+          "name": "id_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numero_factura": {
+          "autoincrement": false,
+          "name": "numero_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_factura": {
+          "autoincrement": false,
+          "name": "fecha_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lugar_expedicion": {
+          "autoincrement": false,
+          "name": "lugar_expedicion",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_cliente_emisor": {
+          "autoincrement": false,
+          "name": "id_cliente_emisor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rfc_emisor": {
+          "autoincrement": false,
+          "name": "rfc_emisor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_cliente_receptor": {
+          "autoincrement": false,
+          "name": "id_cliente_receptor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rfc_receptor": {
+          "autoincrement": false,
+          "name": "rfc_receptor",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "forma_pago_f": {
+          "autoincrement": false,
+          "name": "forma_pago_f",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metodo_pago_f": {
+          "autoincrement": false,
+          "name": "metodo_pago_f",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "moneda_f": {
+          "autoincrement": false,
+          "name": "moneda_f",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uso_cfdi_f": {
+          "autoincrement": false,
+          "name": "uso_cfdi_f",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo_comprobante": {
+          "autoincrement": false,
+          "name": "tipo_comprobante",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_cliente_propietario": {
+          "autoincrement": false,
+          "name": "id_cliente_propietario",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo_impuesto": {
+          "autoincrement": false,
+          "name": "tipo_impuesto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "subtotal": {
+          "autoincrement": false,
+          "name": "subtotal",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impuesto": {
+          "autoincrement": false,
+          "name": "impuesto",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_venta": {
+          "autoincrement": false,
+          "name": "total_venta",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "saldo": {
+          "autoincrement": false,
+          "name": "saldo",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impuestos_retenidos": {
+          "autoincrement": false,
+          "name": "impuestos_retenidos",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impuestos_trasladados": {
+          "autoincrement": false,
+          "name": "impuestos_trasladados",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status_factura": {
+          "autoincrement": false,
+          "name": "status_factura",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "codigo_mf": {
+          "autoincrement": false,
+          "name": "codigo_mf",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_timbrado": {
+          "autoincrement": false,
+          "name": "fecha_timbrado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "val_iva_trasladado": {
+          "autoincrement": false,
+          "name": "val_iva_trasladado",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "val_iva_retenido": {
+          "autoincrement": false,
+          "name": "val_iva_retenido",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "val_isr_retenido": {
+          "autoincrement": false,
+          "name": "val_isr_retenido",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uuid": {
+          "autoincrement": false,
+          "name": "uuid",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "certificado_no": {
+          "autoincrement": false,
+          "name": "certificado_no",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sello": {
+          "autoincrement": false,
+          "name": "sello",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sello_sat": {
+          "autoincrement": false,
+          "name": "sello_sat",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "certificado_sat": {
+          "autoincrement": false,
+          "name": "certificado_sat",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cadena_original_sat": {
+          "autoincrement": false,
+          "name": "cadena_original_sat",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mensaje_jason": {
+          "autoincrement": false,
+          "name": "mensaje_jason",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_cfdi": {
+          "autoincrement": false,
+          "name": "version_cfdi",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
