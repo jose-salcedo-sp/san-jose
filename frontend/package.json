@@ -18,6 +18,8 @@
 		"@tanstack/react-router": "^1.131.49",
 		"@tanstack/react-router-devtools": "^1.131.49",
 		"@tanstack/react-table": "^8.21.3",
+		"@uidotdev/usehooks": "^2.4.1",
+		"arktype": "^2.1.22",
 		"autoprefixer": "^10.4.21",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
@@ -28,10 +30,12 @@
 		"tailwind-merge": "^3.3.1",
 		"tailwind-variants": "^3.1.1",
 		"tailwindcss": "^4.1.13",
+		"tailwindcss-animate": "^1.0.7",
 		"zustand": "^5.0.8"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.35.0",
+		"@tailwindcss/typography": "^0.5.18",
 		"@tanstack/router-plugin": "^1.131.49",
 		"@types/react": "^19.1.13",
 		"@types/react-dom": "^19.1.9",

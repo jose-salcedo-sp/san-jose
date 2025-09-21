@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "@uidotdev/usehooks";
 import { ChevronLeft, ChevronRight, FileUp, Printer, Search, SquarePen, Trash } from "lucide-react";
 import { Suspense } from 'react';
+import { Button } from "@/components/ui/button";
+import EstadoFacturaBadge from "@/components/ui/estado_factura_badge";
+import { Input } from "@/components/ui/input";
 import {
     Table,
     TableBody,
@@ -12,9 +15,6 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { client } from '../client';
-import { Button } from "./ui/button";
-import EstadoFacturaBadge from "./ui/estado_factura_badge";
-import { Input } from "./ui/input";
 
 async function getFacturas({ search, page, perPage }: { search?: string; page: number; perPage: number }) {
     const res = await client.facturas.get({
