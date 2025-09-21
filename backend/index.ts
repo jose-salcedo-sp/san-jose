@@ -14,21 +14,18 @@ const app = new Elysia()
             const perPage = query.perPage ?? 20;
             const offset = (page - 1) * perPage;
 
-            const likeQ = search ? sql`'%' || ${search} || '%'` : null;
             const searchWhere =
                 search.length > 0
-                    ? or(like(clientes.nombreCliente, likeQ!), like(facturas.numeroFactura, likeQ!))
+                    ? or(like(clientes.nombreCliente, sql`'%' || ${search} || '%'`), like(facturas.numeroFactura, sql`'%' || ${search} || '%'`))
                     : undefined;
 
-            // COUNT
             const totalCount = (await db
                 .select({ totalCount: sql<number>`count(*)` })
                 .from(facturas)
                 .innerJoin(clientes, eq(facturas.idCliente, clientes.idCliente))
                 .where(searchWhere) // join already enforces the relationship
-                .execute())[0];
+                .execute())[0]?.totalCount as unknown as number;
 
-            // PAGE
             const rows = await db
                 .select({
                     idFactura: facturas.idFactura,
@@ -66,10 +63,10 @@ const app = new Elysia()
 
             return {
                 data: rows,
-                count: totalCount?.totalCount,
+                count: totalCount,
                 page,
                 perPage,
-                totalPages: Math.max(1, Math.ceil((totalCount?.totalCount ?? 0) / perPage)),
+                totalPages: Math.max(1, Math.ceil((totalCount ?? 0) / perPage)),
             };
         },
         {
