@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getRouteApi } from '@tanstack/react-router';
 import { useDebounce } from "@uidotdev/usehooks";
 import { ChevronLeftIcon, ChevronRightIcon, FileUp, Printer, Search, SquarePen, Trash } from "lucide-react";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import EstadoFacturaBadge from "@/components/ui/estado_factura_badge";
 import { Input } from "@/components/ui/input";
@@ -41,7 +41,7 @@ const mxnFmt = new Intl.NumberFormat("es-MX", {
     maximumFractionDigits: 2,
 });
 
-const route = getRouteApi('/');
+const route = getRouteApi('/app/facturas');
 
 export default function FacturasTable() {
     const navigate = route.useNavigate();
@@ -65,6 +65,11 @@ export default function FacturasTable() {
             replace: true,
         });
     }
+
+    // biome-ignore lint/correctness/useExhaustiveDependencies: setSearchParams changes every render
+    useEffect(() => {
+        setSearchParams({ search: debouncedSearch, page: 1 })
+    }, [debouncedSearch]);
 
     const showingSkeleton = isLoading && !data;
 
