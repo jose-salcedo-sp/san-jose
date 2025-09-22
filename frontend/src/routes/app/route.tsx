@@ -1,14 +1,18 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from '@/components/ui/breadcrumb'
+import { createFileRoute, Outlet, useLocation } from '@tanstack/react-router'
 import { AppSidebar } from '@/components/app-sidebar/app-sidebar'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 
 export const Route = createFileRoute('/app')({
     component: RouteComponent,
 })
 
 function RouteComponent() {
+    const { pathname } = useLocation();
+    const page_tree = pathname.split('/');
+    const page_name = `${page_tree[page_tree.length - 1][0].toUpperCase()}${page_tree[page_tree.length - 1].slice(1)}`;
+
     return <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
@@ -21,14 +25,8 @@ function RouteComponent() {
                     />
                     <Breadcrumb>
                         <BreadcrumbList>
-                            <BreadcrumbItem className="hidden md:block">
-                                <BreadcrumbLink href="#">
-                                    Building Your Application
-                                </BreadcrumbLink>
-                            </BreadcrumbItem>
-                            <BreadcrumbSeparator className="hidden md:block" />
                             <BreadcrumbItem>
-                                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                                <BreadcrumbPage>{page_name}</BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>

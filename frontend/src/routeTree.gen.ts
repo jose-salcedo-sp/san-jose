@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppProveedoresRouteImport } from './routes/app/proveedores'
+import { Route as AppProductosRouteImport } from './routes/app/productos'
 import { Route as AppFacturasRouteImport } from './routes/app/facturas'
+import { Route as AppClientesRouteImport } from './routes/app/clientes'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/app',
@@ -23,34 +26,77 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppProveedoresRoute = AppProveedoresRouteImport.update({
+  id: '/proveedores',
+  path: '/proveedores',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppProductosRoute = AppProductosRouteImport.update({
+  id: '/productos',
+  path: '/productos',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppFacturasRoute = AppFacturasRouteImport.update({
   id: '/facturas',
   path: '/facturas',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppClientesRoute = AppClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
   getParentRoute: () => AppRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
+  '/app/clientes': typeof AppClientesRoute
   '/app/facturas': typeof AppFacturasRoute
+  '/app/productos': typeof AppProductosRoute
+  '/app/proveedores': typeof AppProveedoresRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
+  '/app/clientes': typeof AppClientesRoute
   '/app/facturas': typeof AppFacturasRoute
+  '/app/productos': typeof AppProductosRoute
+  '/app/proveedores': typeof AppProveedoresRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
+  '/app/clientes': typeof AppClientesRoute
   '/app/facturas': typeof AppFacturasRoute
+  '/app/productos': typeof AppProductosRoute
+  '/app/proveedores': typeof AppProveedoresRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/facturas'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/clientes'
+    | '/app/facturas'
+    | '/app/productos'
+    | '/app/proveedores'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app' | '/app/facturas'
-  id: '__root__' | '/' | '/app' | '/app/facturas'
+  to:
+    | '/'
+    | '/app'
+    | '/app/clientes'
+    | '/app/facturas'
+    | '/app/productos'
+    | '/app/proveedores'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/clientes'
+    | '/app/facturas'
+    | '/app/productos'
+    | '/app/proveedores'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -74,6 +120,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/proveedores': {
+      id: '/app/proveedores'
+      path: '/proveedores'
+      fullPath: '/app/proveedores'
+      preLoaderRoute: typeof AppProveedoresRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/productos': {
+      id: '/app/productos'
+      path: '/productos'
+      fullPath: '/app/productos'
+      preLoaderRoute: typeof AppProductosRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/facturas': {
       id: '/app/facturas'
       path: '/facturas'
@@ -81,15 +141,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppFacturasRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/clientes': {
+      id: '/app/clientes'
+      path: '/clientes'
+      fullPath: '/app/clientes'
+      preLoaderRoute: typeof AppClientesRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
+  AppClientesRoute: typeof AppClientesRoute
   AppFacturasRoute: typeof AppFacturasRoute
+  AppProductosRoute: typeof AppProductosRoute
+  AppProveedoresRoute: typeof AppProveedoresRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppClientesRoute: AppClientesRoute,
   AppFacturasRoute: AppFacturasRoute,
+  AppProductosRoute: AppProductosRoute,
+  AppProveedoresRoute: AppProveedoresRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

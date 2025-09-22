@@ -1,21 +1,14 @@
-import * as React from "react"
+import type { FileRoutesByPath } from "@tanstack/react-router"
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  MapIcon,
-  PieChart,
-  Settings2,
-  SquareTerminal,
+  BarcodeIcon,
+  BoxesIcon,
+  LogsIcon,
+  type LucideIcon,
+  UsersIcon,
 } from "lucide-react"
-
+import type * as React from "react"
 import { NavMain } from '@/components/app-sidebar/nav-main'
-import { NavProjects } from '@/components/app-sidebar/nav-projects'
 import { NavUser } from '@/components/app-sidebar/nav-user'
-import { TeamSwitcher } from '@/components/app-sidebar/team-switcher'
 import {
   Sidebar,
   SidebarContent,
@@ -24,145 +17,57 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar'
 
-// This is sample data.
-const data = {
+export type NavItem = { title: string; to: keyof FileRoutesByPath; icon: LucideIcon };
+type Data = {
+  user: any,
+  navMain: NavItem[]
+}
+
+const data: Data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
+      title: "Productos",
+      to: "/app/productos",
+      icon: BarcodeIcon
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
+      title: "Clientes",
+      to: "/app/clientes",
+      icon: UsersIcon
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      title: "Proveedores",
+      to: "/app/proveedores",
+      icon: BoxesIcon
     },
     {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
+      title: "Ordenes de Compra",
+      to: "/app/facturas",
+      icon: LogsIcon
     },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: MapIcon,
-    },
-  ],
+  ]
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <div className="flex items-center">
+          <div className="text-sidebar-primary-foreground flex aspect-square max-w-full items-center justify-center">
+            <img src="/san_jose.png" alt="San José Logo" className="h-full" />
+          </div>
+          <div className="grid flex-1 text-left text-lg leading-tight">
+            <span className="truncate font-medium">San José</span>
+          </div>
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
