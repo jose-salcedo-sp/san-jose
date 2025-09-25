@@ -5,7 +5,10 @@ export const products = sqliteTable("products", {
 	codigoProducto: numeric("codigo_producto"),
 	nombreProducto: numeric("nombre_producto"),
 	statusProducto: numeric("status_producto"),
-	unidadProducto: numeric("unidad_producto").references(() => unidadesMedida.idUnidad, { onDelete: "restrict", onUpdate: "cascade" }),
+	unidadProducto: numeric("unidad_producto").references(
+		() => unidadesMedida.idUnidad,
+		{ onDelete: "restrict", onUpdate: "cascade" },
+	),
 	dateAdded: numeric("date_added"),
 	// id proveedor?
 	precioProveedor: numeric("precio_proveedor"),
@@ -27,8 +30,14 @@ export const tipoComprobantes = sqliteTable("tipo_comprobantes", {
 
 export const detalleFactura = sqliteTable("detalle_factura", {
 	idDetalle: numeric("id_detalle"),
-	numeroFactura: numeric("numero_factura").references(() => facturas.numeroFactura, { onDelete: "cascade", onUpdate: "cascade" }),
-	idProducto: numeric("id_producto").references(() => products.idProducto, { onDelete: "restrict", onUpdate: "cascade" }),
+	numeroFactura: numeric("numero_factura").references(
+		() => facturas.numeroFactura,
+		{ onDelete: "cascade", onUpdate: "cascade" },
+	),
+	idProducto: numeric("id_producto").references(() => products.idProducto, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
 	cantidad: numeric(),
 	precioVenta: numeric("precio_venta"),
 	objImp: numeric("obj_imp"),
@@ -39,23 +48,37 @@ export const facturas = sqliteTable("facturas", {
 	idFactura: numeric("id_factura"),
 	numeroFactura: numeric("numero_factura"),
 	fechaFactura: numeric("fecha_factura"),
-	idCliente: numeric("id_cliente").references(() => clientes.idCliente, { onDelete: "restrict", onUpdate: "cascade" }),
-	idVendedor: numeric("id_vendedor").references(() => users.userId, { onDelete: "restrict", onUpdate: "cascade" }),
+	idCliente: numeric("id_cliente").references(() => clientes.idCliente, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
+	idVendedor: numeric("id_vendedor").references(() => users.userId, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
 	condiciones: numeric(),
 	semana: numeric(),
 	totalVenta: numeric("total_venta"),
 	estadoFactura: numeric("estado_factura"),
-	metodoPago: numeric("metodo_pago").references(() => metodoPago.idMetodo, { onDelete: "restrict", onUpdate: "cascade" }),
-	usoCfdi: numeric("uso_cfdi").references(() => usoCfdi.idCfd, { onDelete: "restrict", onUpdate: "cascade" }),
+	metodoPago: numeric("metodo_pago").references(() => metodoPago.idMetodo, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
+	usoCfdi: numeric("uso_cfdi").references(() => usoCfdi.idCfd, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
 	xml: numeric(),
 });
-
 
 export const users = sqliteTable("users", {
 	userId: numeric("user_id"),
 	firstname: numeric(),
 	lastname: numeric(),
-	userEmpresa: numeric("user_empresa").references(() => perfil.idPerfil, { onDelete: "restrict", onUpdate: "cascade" }),
+	userEmpresa: numeric("user_empresa").references(() => perfil.idPerfil, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
 	userName: numeric("user_name"),
 	userPasswordHash: numeric("user_password_hash"),
 	userEmail: numeric("user_email"),
@@ -108,7 +131,10 @@ export const clientes = sqliteTable("clientes", {
 	rfcCliente: numeric("rfc_cliente"),
 	cpCliente: numeric("cp_cliente"),
 	tipoCliente: numeric("tipo_cliente"),
-	regimenCliente: numeric("regimen_cliente").references(() => regimenes.idReg, { onDelete: "restrict", onUpdate: "cascade" }),
+	regimenCliente: numeric("regimen_cliente").references(() => regimenes.idReg, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
 });
 
 export const tmp = sqliteTable("tmp", {
@@ -137,25 +163,37 @@ export const currencies = sqliteTable("currencies", {
 	code: numeric(),
 });
 
-export const detalleFacturasEmitidas = sqliteTable("detalle_facturas_emitidas", {
-	idDetalle: numeric("id_detalle"),
-	idFactura: numeric("id_factura").references(() => facturasEmitidas.idFactura, { onDelete: "cascade", onUpdate: "cascade" }),
-	codigoProducto: numeric("codigo_producto").references(() => products.codigoProducto, { onDelete: "restrict", onUpdate: "cascade" }),
-	cantidadProducto: numeric("cantidad_producto"),
-	unidadProducto: numeric("unidad_producto").references(() => unidadesMedida.idUnidad, { onDelete: "restrict", onUpdate: "cascade" }),
-	descripcionProducto: numeric("descripcion_producto"),
-	precioVenta: numeric("precio_venta"),
-	importe: numeric(),
-	descuento: numeric(),
-	descuentoAplicado: numeric("descuento_aplicado"),
-	objetoimpuesto: numeric(),
-	impuestoOpcion: numeric("impuesto_opcion"),
-	valorTrasladado: numeric("valor_trasladado"),
-	retIva: numeric("ret_iva"),
-	retIsr: numeric("ret_isr"),
-	valRetIva: numeric("val_ret_iva"),
-	valRetIsr: numeric("val_ret_isr"),
-});
+export const detalleFacturasEmitidas = sqliteTable(
+	"detalle_facturas_emitidas",
+	{
+		idDetalle: numeric("id_detalle"),
+		idFactura: numeric("id_factura").references(
+			() => facturasEmitidas.idFactura,
+			{ onDelete: "cascade", onUpdate: "cascade" },
+		),
+		codigoProducto: numeric("codigo_producto").references(
+			() => products.codigoProducto,
+			{ onDelete: "restrict", onUpdate: "cascade" },
+		),
+		cantidadProducto: numeric("cantidad_producto"),
+		unidadProducto: numeric("unidad_producto").references(
+			() => unidadesMedida.idUnidad,
+			{ onDelete: "restrict", onUpdate: "cascade" },
+		),
+		descripcionProducto: numeric("descripcion_producto"),
+		precioVenta: numeric("precio_venta"),
+		importe: numeric(),
+		descuento: numeric(),
+		descuentoAplicado: numeric("descuento_aplicado"),
+		objetoimpuesto: numeric(),
+		impuestoOpcion: numeric("impuesto_opcion"),
+		valorTrasladado: numeric("valor_trasladado"),
+		retIva: numeric("ret_iva"),
+		retIsr: numeric("ret_isr"),
+		valRetIva: numeric("val_ret_iva"),
+		valRetIsr: numeric("val_ret_isr"),
+	},
+);
 
 export const regimenes = sqliteTable("regimenes", {
 	idReg: numeric("id_reg"),
@@ -165,11 +203,17 @@ export const regimenes = sqliteTable("regimenes", {
 });
 
 export const contactos = sqliteTable("contactos", {
-	userId: numeric("user_id").references(() => users.userId, { onDelete: "cascade", onUpdate: "cascade" }),
+	userId: numeric("user_id").references(() => users.userId, {
+		onDelete: "cascade",
+		onUpdate: "cascade",
+	}),
 	firstname: numeric(),
 	lastname: numeric(),
 	empresa: numeric(),
-	idEmpresa: numeric("id_empresa").references(() => perfil.idPerfil, { onDelete: "restrict", onUpdate: "cascade" }),
+	idEmpresa: numeric("id_empresa").references(() => perfil.idPerfil, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
 	dateAdded: numeric("date_added"),
 	telefono: numeric(),
 });
@@ -184,7 +228,10 @@ export const perfil = sqliteTable("perfil", {
 	telefono: numeric(),
 	email: numeric(),
 	impuesto: numeric(),
-	moneda: numeric().references(() => currencies.id, { onDelete: "restrict", onUpdate: "cascade" }),
+	moneda: numeric().references(() => currencies.id, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
 	logoUrl: numeric("logo_url"),
 	emisorFactura: numeric("emisor_factura"),
 	rfcEmisor: numeric("rfc_emisor"),
@@ -213,16 +260,40 @@ export const facturasEmitidas = sqliteTable("facturas_emitidas", {
 	numeroFactura: numeric("numero_factura"),
 	fechaFactura: numeric("fecha_factura"),
 	lugarExpedicion: numeric("lugar_expedicion"),
-	idClienteEmisor: numeric("id_cliente_emisor").references(() => clientes.idCliente, { onDelete: "restrict", onUpdate: "cascade" }),
+	idClienteEmisor: numeric("id_cliente_emisor").references(
+		() => clientes.idCliente,
+		{ onDelete: "restrict", onUpdate: "cascade" },
+	),
 	rfcEmisor: numeric("rfc_emisor"),
-	idClienteReceptor: numeric("id_cliente_receptor").references(() => clientes.idCliente, { onDelete: "restrict", onUpdate: "cascade" }),
+	idClienteReceptor: numeric("id_cliente_receptor").references(
+		() => clientes.idCliente,
+		{ onDelete: "restrict", onUpdate: "cascade" },
+	),
 	rfcReceptor: numeric("rfc_receptor"),
-	formaPagoF: numeric("forma_pago_f").references(() => formaDePago.idForma, { onDelete: "restrict", onUpdate: "cascade" }),
-	metodoPagoF: numeric("metodo_pago_f").references(() => metodoPago.idMetodo, { onDelete: "restrict", onUpdate: "cascade" }),
-	monedaF: numeric("moneda_f").references(() => monedaSat.idMoneda, { onDelete: "restrict", onUpdate: "cascade" }),
-	usoCfdiF: numeric("uso_cfdi_f").references(() => usoCfdi.idCfd, { onDelete: "restrict", onUpdate: "cascade" }),
-	tipoComprobante: numeric("tipo_comprobante").references(() => tipoComprobantes.idTipo, { onDelete: "restrict", onUpdate: "cascade" }),
-	idClientePropietario: numeric("id_cliente_propietario").references(() => clientes.idCliente, { onDelete: "restrict", onUpdate: "cascade" }),
+	formaPagoF: numeric("forma_pago_f").references(() => formaDePago.idForma, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
+	metodoPagoF: numeric("metodo_pago_f").references(() => metodoPago.idMetodo, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
+	monedaF: numeric("moneda_f").references(() => monedaSat.idMoneda, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
+	usoCfdiF: numeric("uso_cfdi_f").references(() => usoCfdi.idCfd, {
+		onDelete: "restrict",
+		onUpdate: "cascade",
+	}),
+	tipoComprobante: numeric("tipo_comprobante").references(
+		() => tipoComprobantes.idTipo,
+		{ onDelete: "restrict", onUpdate: "cascade" },
+	),
+	idClientePropietario: numeric("id_cliente_propietario").references(
+		() => clientes.idCliente,
+		{ onDelete: "restrict", onUpdate: "cascade" },
+	),
 	tipoImpuesto: numeric("tipo_impuesto"),
 	subtotal: numeric(),
 	impuesto: numeric(),
@@ -245,4 +316,3 @@ export const facturasEmitidas = sqliteTable("facturas_emitidas", {
 	mensajeJason: numeric("mensaje_jason"),
 	versionCfdi: numeric("version_cfdi"),
 });
-
