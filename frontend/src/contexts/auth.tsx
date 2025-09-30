@@ -1,6 +1,7 @@
-import { createContext, type ReactElement, useContext, useState } from "react";
+import { createContext, type ReactElement, useContext, useEffect, useState } from "react";
 import { createStore, type StoreApi, useStore } from "zustand";
 import { client } from "@/client";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 type User = NonNullable<Awaited<ReturnType<typeof client.login.post>>['data']>;
 type LoginFn = (creds: { user_name: string, password: string }) => Promise<{ success: true } | { success: false, error: string }>;
@@ -21,6 +22,8 @@ export type AuthStore = ({
 const AuthContext = createContext<StoreApi<AuthStore> | null>(null);
 
 export function AuthStoreContextProvider({ children }: { children: ReactElement }) {
+    const [localStorageUser, setLocalStorageUser] = useLocalStorage<User | null>("user", null);
+
     const [store] = useState(() => createStore<AuthStore>((set) => ({
         user: null,
         loggedIn: false,
@@ -41,6 +44,12 @@ export function AuthStoreContextProvider({ children }: { children: ReactElement 
                         loggedIn: true,
                     }));
 
+                    setLocalStorageUser({
+                        ...user,
+                        token
+                    });
+
+                    
                     return { success: true };
                 } catch (err: unknown) {
                     const message =
@@ -53,6 +62,21 @@ export function AuthStoreContextProvider({ children }: { children: ReactElement 
             logout: () => set(() => ({ user: null }))
         }
     })));
+
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Only on first load
+    useEffect(() => {
+        
+        if (localStorageUser) {
+            const { token, ...user } = localStorageUser;
+            console.log("loading localstorage user")
+            
+            store.setState(() => ({
+                token,
+                user: user as User,
+                loggedIn: true
+            }))
+        }
+    }, []);
 
     return <AuthContext.Provider value={store}>
         {children}

@@ -1,5 +1,5 @@
 import { useForm } from "@tanstack/react-form";
-import { createFileRoute, getRouteApi, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { type } from "arktype";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,6 +39,8 @@ function RouteComponent() {
             navigate({ to: '/login', replace: true, search: { error: login.error } });
         }
     });
+
+    console.log(auth);
 
     return (
         <div className="grid min-h-svh lg:grid-cols-2">
