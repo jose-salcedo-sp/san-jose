@@ -6,7 +6,6 @@ import { Elysia } from "elysia";
 import { db } from "./db/db";
 import { clientes, facturas, users } from "./drizzle/schema";
 
-
 const app = new Elysia()
 	.use(cors())
 	.use(
@@ -22,7 +21,7 @@ const app = new Elysia()
 				eq(users.userEmail, body.user_name)
 			)))[0];
 			
-			if (!match || !(await Bun.password.verify(body.password, match.userPasswordHash))) return status(400, "Incorrect username or password");;
+			if (!match || !(await Bun.password.verify(body.password, match.userPasswordHash))) return status(400, "Incorrect username or password");
 
 			const token = await jwt.sign({
 				user_id: match.userId,

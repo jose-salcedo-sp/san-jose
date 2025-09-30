@@ -1,10 +1,11 @@
-type ValueKind = "string" | "number" | "boolean" | "date";
+export type ValueKind = "string" | "number" | "boolean" | "date";
 
 type TsFromKind<K extends ValueKind> =
-    K extends "number" ? number :
-    K extends "string" ? string :
-    K extends "boolean" ? boolean :
-    K extends "date" ? Date : never;
+  K extends "number" ? number :
+  K extends "string" ? string :
+  K extends "boolean" ? boolean :
+  K extends "date" ? Date :
+  never;
 
 type ModelKey = string;
 
@@ -36,27 +37,55 @@ export type SSTableFromModelProps<M extends ColumnModelDef> = {
     data: readonly RowFromModel<M>[];
 };
 
-type KeyedCols<M extends ColumnModelDef> = Extract<M[number], { key: ModelKey }>;
-type KeysOf<M extends ColumnModelDef> = KeyedCols<M>["key"];
+export type KeyedCols<M extends ColumnModelDef> = Extract<M[number], { key: string }>;
 
-// For a specific key K, get that column's ValueKind
-type KindForKey<M extends ColumnModelDef, K extends KeysOf<M>> =
+export type KeysOf<M extends ColumnModelDef> = KeyedCols<M>["key"];
+
+export type BooleanCol<M extends ColumnModelDef> = Extract<KeyedCols<M>, { valueType: "boolean" }>;
+export type NumberCol<M extends ColumnModelDef> = Extract<KeyedCols<M>, { valueType: "number" }>;
+export type TextCol<M extends ColumnModelDef> = Extract<KeyedCols<M>, { valueType: "string" }>;
+export type DateCol<M extends ColumnModelDef> = Extract<KeyedCols<M>, { valueType: "date" }>;
+
+export type NumberOperators = "gt" | "gte" | "lt" | "lte" | "eq" | "ne";
+export type DateOperators   = NumberOperators | "range";
+
+export type KindForKey<M extends ColumnModelDef, K extends KeysOf<M>> =
     Extract<KeyedCols<M>, { key: K }>["valueType"];
+export type BooleanKeys<M extends ColumnModelDef> =
+    Extract<KeyedCols<M>, { valueType: "boolean" }>["key"];
 
-type ComparisonOp = "gt" | "gte" | "lt" | "lte" | "eq" | "neq";
+export type FilterForKey<M extends ColumnModelDef, K extends KeysOf<M>> =
+    KindForKey<M, K> extends "number" | "date"
+    ? { key: K; value: TsFromKind<KindForKey<M, K>>; operation: NumberOperators }
+    : { key: K; value: TsFromKind<KindForKey<M, K>> };
+
+export type DateOpDescriptor<M extends ColumnModelDef, K extends KeysOf<M>> =
+  | {
+      key: K;
+      operation: Exclude<DateOperators, "range">;
+      value: Date;
+    }
+  | {
+      key: K;
+      operation: "range";
+      from: Date;
+      to:   Date;
+    };
 
 export type FilterDescriptor<M extends ColumnModelDef> = {
-    [K in KeysOf<M>]:
-    KindForKey<M, K> extends "number" | "date"
-    ? {
-        key: K;
-        value: TsFromKind<KindForKey<M, K>>;
-        operation: ComparisonOp;
-    }
+  [K in KeysOf<M>]:
+    KindForKey<M, K> extends "number"
+      ? {
+          key: K;
+          value: number;
+          operation: NumberOperators;
+        }
+    : KindForKey<M, K> extends "date"
+      ? DateOpDescriptor<M, K>
     : {
-        key: K;
-        value: TsFromKind<KindForKey<M, K>>;
-    }
+          key: K;
+          value: TsFromKind<KindForKey<M, K>>;    // string | boolean, etc.
+        }
 }[KeysOf<M>];
 
 export type SortDescriptor<M extends ColumnModelDef> = {
@@ -81,11 +110,3 @@ export type Action<M extends ColumnModelDef> =
     | { type: "setPage"; page: number }
     | { type: "setPerPage"; perPage: number }
     | { type: "toggleColumn"; key: KeysOf<M>; show: boolean };
-
-export function makeInitialState<M extends ColumnModelDef>(): State<M> {
-    return {
-        filters: [],
-        page: 1,
-        pageSize: 20
-    };
-}
