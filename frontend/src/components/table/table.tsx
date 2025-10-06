@@ -1,15 +1,10 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: Leave me alone bruh */
 
-import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
+import { addDays } from "date-fns";
+import { ArrowDown, ArrowUp, ArrowUpDown, Filter, type LucideIcon } from "lucide-react";
 import { type ActionDispatch, type ChangeEvent, useEffect, useMemo, useReducer, useState } from "react";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
+import type { DateRange } from "react-day-picker";
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,14 +13,24 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button";
-import type { Action, ColumnModelDef, ModelColumn, SSTableFromModelProps, State, FilterDescriptor, KeyedCols, BooleanCol, NumberCol, DateCol, TextCol, NumberOperators, DateOperators, DateOpDescriptor, KeysOf } from "./types";
-import { cn } from "@/lib/utils";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { DatePicker, DateRangePicker } from "../date-picker/date-picker";
-import type { DateRange } from "react-day-picker";
-import { addDays } from "date-fns";
+import type { Action, BooleanCol, ColumnModelDef, DateCol, DateOpDescriptor, DateOperators, FilterDescriptor, KeyedCols, KeysOf, ModelColumn, ModelKeyedColumn, NumberCol, NumberOperators, SSTableFromModelProps, State, TextCol, ValueKind } from "./types";
+
+export const col = <
+    K extends string,
+    VK extends ValueKind
+>(c: ModelKeyedColumn<K, VK>) => c;
 
 function makeInitialState<M extends ColumnModelDef>(): State<M> {
     return {
@@ -33,6 +38,15 @@ function makeInitialState<M extends ColumnModelDef>(): State<M> {
         page: 1,
         pageSize: 20
     };
+}
+
+export function useTableState<M extends ColumnModelDef>(): [State<M>, ActionDispatch<[action: Action<M>]>] {
+    const [state, dispatch] = useReducer(
+        stateReducer<M>,
+        makeInitialState()
+    );
+
+    return [state, dispatch];
 }
 
 export function stateReducer<M extends ColumnModelDef>(
@@ -69,21 +83,15 @@ export function stateReducer<M extends ColumnModelDef>(
 }
 
 export function SSTable<T extends ColumnModelDef>(props: SSTableFromModelProps<T>) {
-    const { data, columnModel } = props;
-    const [state, dispatch] = useReducer(
-        stateReducer<T>,
-        makeInitialState()
-    );
+    const { data, columnModel, state, dispatch } = props;
     const visibleCols = useMemo(
-        () => columnModel.filter(c => c.options?.show ?? true),
+        () => columnModel.filter(c => c.options?.show ?? true) as unknown as T,
         [columnModel]
     );
 
-    console.log(state);
-
     return (
         <Table>
-            <SSHeader columnModel={columnModel} state={state} dispatch={dispatch} />
+            <SSHeader columnModel={visibleCols} state={state} dispatch={dispatch} />
             <TableBody>
                 {data.map((row, rowIndex) => (
                     <TableRow key={rowIndex}>
@@ -91,9 +99,12 @@ export function SSTable<T extends ColumnModelDef>(props: SSTableFromModelProps<T
                             .filter(c => c.options?.show ?? true)
                             .map((c, i) => {
                                 const value = row[c.key as keyof typeof row];
+                                const rendered = c.cell
+                                    ? c.cell({ value: value as any, row, rowIndex })
+                                    : String(value ?? "");
 
                                 return <TableCell key={`${c.key}-${i}`}>
-                                    {String(value)}
+                                    {rendered}
                                 </TableCell>;
                             })}
                     </TableRow>
@@ -112,10 +123,11 @@ type SSHeaderProps<M extends ColumnModelDef> = {
 function SSHeader<M extends ColumnModelDef>(props: SSHeaderProps<M>) {
     const sortable_cols = useMemo(() => new Set([...props.columnModel].filter(col => col.options?.sortable).map(col => col.key)), [props.columnModel]);
     const filterable_cols = useMemo(() => new Set([...props.columnModel].filter(col => col.options?.filterable).map(col => col.key)), [props.columnModel]);
+    const visibleCols = useMemo(() => props.columnModel.filter(c => c.options?.show ?? true), [props.columnModel]);
 
     return <TableHeader>
         <TableRow>
-            {props.columnModel.map(c => {
+            {visibleCols.map(c => {
                 const showMenu = filterable_cols.has(c.key) || sortable_cols.has(c.key);
 
                 return <TableHead
@@ -144,10 +156,10 @@ type ColumnHeaderMenuProps<M extends ColumnModelDef> = {
     dispatch: ActionDispatch<[action: Action<M>]>
 }
 
-const SortIcons = {
-    'asc': <ArrowUp className="h-full aspect-square" />,
-    'desc': <ArrowDown className="h-full aspect-square" />,
-    'default': <ArrowUpDown className="h-full aspect-square" />,
+const SortIcons: Record<string, LucideIcon> = {
+    asc: ArrowUp,
+    desc: ArrowDown,
+    default: ArrowUpDown,
 } as const;
 
 function ColumnHeaderMenu<M extends ColumnModelDef>(props: ColumnHeaderMenuProps<M>) {
@@ -166,19 +178,25 @@ function ColumnHeaderMenu<M extends ColumnModelDef>(props: ColumnHeaderMenuProps
         return props.state?.sort && props.state?.sort.by === c.key && props.state.sort.order === order
     }
 
+    function getFilterIcon() {
+        if (!props.state.filters?.some(fd => fd.key === props.colModel.key)) return null;
+
+        return <span className="bg-blue-500 aspect-square w-2 rounded-full" />;
+    }
+
+    function getSortIcon() {
+        if (!props.colModel.options?.sortable) return null;
+        const order = props.state?.sort?.by === props.colModel.key ? props.state.sort.order : "default";
+        const Icon = SortIcons[order];
+        return <Icon className="inline-block size-4" />;
+    }
+
     return <DropdownMenu>
         <DropdownMenuTrigger asChild>
             <Button variant={"ghost"}>
+                {getFilterIcon()}
                 {props.colModel.title}
-                {
-                    props.colModel.options?.sortable ?
-                        (
-                            props.state?.sort && props.state?.sort.by === props.colModel.key ?
-                                SortIcons[props.state.sort.order] :
-                                SortIcons.default
-                        ) :
-                        null
-                }
+                {getSortIcon()}
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -417,7 +435,14 @@ function TextFilter<M extends ColumnModelDef>(
         });
     }
 
-    return <Input onChange={handleInputChange} placeholder={`Filtrar ${props.colModel.title}...`} />
+    function getValue() {
+        const filter = props.state.filters?.find(fd => fd.key === props.colModel.key);
+
+        if (!filter) return "";
+        return filter.value;
+    }
+
+    return <Input value={getValue()} onChange={handleInputChange} placeholder={`Filtrar ${props.colModel.title}...`} />
 }
 
 function ColumnFilter<M extends ColumnModelDef>(props: ColumnFilterProps<M>) {
